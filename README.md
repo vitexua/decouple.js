@@ -21,7 +21,11 @@ You code will work well anyway.
 
 For cross module communications used Mediator pattern.
 
+## Implementation notes
+
 Each module do not know interface of any other module or its name/namespace. But it know what events of Mediator to listen to.
+
+Each module can have any number of submodules. Define and init submodules managed by parent module. But code can be still include in any order.
 
 Module can be referenced true onInit event, but it will brake interface decoupling.
 

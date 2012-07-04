@@ -1,5 +1,5 @@
 (function () {
-	var Module1 = my.Class({
+	ui.modules.Module1 = my.Class(ui.view.module, {
 		constructor: function(options) {
 			var that = this;
 			this.index = options && options.index || 'module1-';
@@ -13,28 +13,13 @@
 				that.dependedValue = value;
 			});
 
+			ui.modules.Module1.Super.call(this, options);
+
 			return false;
-		},
-		init: function(options) {
-			ui.mediator.trigger(this.index+'onInit', this);
-			ui.mediator.trigger(this.index+'onDeclaration', this.declaration);
-			return this.declaration;
-		},
-		setValue: function(value) {
-			this.value = value;
-			ui.mediator.trigger(this.index+'onValueChange', this.value);
-		},
-		getValue: function() {
-			return this.value;
-		},
-		getDependedValue: function() {
-			// use data from external module
-			return this.value + ' ' + this.dependedValue;
 		},
 		getFormatedValue: function() {
 			// call method from external module
 			return this.module2.getFormatedValue(this.value);
 		}
 	});
-	ui.modules.Module1 = Module1;
 }).apply(ui);
