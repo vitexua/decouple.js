@@ -3,12 +3,16 @@
 	ui.view.module = my.Class({
 		constructor: function(options) {
 			var that = this;
-			this.declaration = {};
+			this.declaration = this.declaration || {};
 			this.index = options.index || undefined;
 			this.type = options.type || undefined;
 			this.value = undefined;
 			this.dependedValue = undefined;
 			this.items = {};
+
+			ui.mediator.on(this.index+'-onValueChange', function(){
+				$('#'+that.index+'-value').html(that.value);
+			});
 
 			this.defineSubModules();
 
