@@ -25,13 +25,9 @@
 
 		$('#declaration').html(rootHTML);
 
+		ui.loaded = true;
 
-		// TEST
-		root.items.Module2.setValue('test');
-		root.items.Module1.setValue('mod1');
-		root.items.Module1.items.Sub2.setValue('done');
-		root.items.Module2.items.Sub1.setValue('sm1');
-		root.items.Module2.items.Sub2.setValue('sm2');
+		ui.mediator.trigger('app-start');
 
 	});
 

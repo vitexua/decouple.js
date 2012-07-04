@@ -6,12 +6,14 @@
 			this.declaration = this.declaration || {};
 			this.index = options.index || undefined;
 			this.type = options.type || undefined;
-			this.value = undefined;
-			this.dependedValue = undefined;
+			this.value = this.value || undefined;
 			this.items = {};
 
 			ui.mediator.on(this.index+'-onValueChange', function(){
-				$('#'+that.index+'-value').html(that.value);
+				that.bindValue();
+			});
+			ui.mediator.on('app-start', function(){
+				that.bindValue();
 			});
 
 			this.defineSubModules();
@@ -50,21 +52,20 @@
 				module.init();
 			});
 			ui.mediator.fire(this.index+'-onInit', this);
+			ui.mediator.fire(this.index+'-onValueChange', this.value);
 			return this.declaration;
 		},
 		setValue: function(value) {
 			this.value = value;
 			ui.mediator.fire(this.index+'-onValueChange', this.value);
 		},
+		bindValue: function() {
+			if(ui.loaded){
+				$('#'+this.index+'-value').html(this.value);
+			}
+		},
 		getValue: function() {
 			return this.value;
-		},
-		getDependedValue: function() {
-			// use data from external module
-			return this.value + ' ' + this.dependedValue;
-		},
-		getFormatedValue: function(value) {
-			return this.formatValue(value || this.value);
 		}
 	});
 }).apply(ui);
