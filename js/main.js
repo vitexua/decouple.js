@@ -2,8 +2,10 @@
 
 	var modules = [];
 
-	var root = new ui.Root();
-	root.init();
+	window.root = new ui.Root({
+		index: 'app'
+	});
+	window.root.init();
 
 	console.log(root.getDeclaration());
 
