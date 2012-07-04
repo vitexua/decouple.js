@@ -7,8 +7,6 @@
 
 			ui.Root.Super.call(this, options);
 
-			this.defineSubModules();
-
 			return false;
 		}
 	});

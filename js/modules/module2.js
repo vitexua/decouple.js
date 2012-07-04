@@ -5,13 +5,11 @@
 			this.declaration = { cls: 'subs' };
 			this.subModulesIndexes = ['Module2Sub1', 'Module2Sub2'];
 
-			ui.mediator.on('module1-onValueChange', function(value){
+			ui.mediator.on('app-Module1-onValueChange', function(value){
 				that.dependedValue = value;
 			});
 
 			ui.modules.Module2.Super.call(this, options);
-
-// this.defineSubModules();
 
 			return false;
 		},

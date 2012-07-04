@@ -4,14 +4,14 @@
 			var that = this;
 			this.declaration = { html: 'none' };
 
-			ui.mediator.on('module2-onInit', function(module){
+			ui.mediator.on('app-Module2-onInit', function(module){
 				that.module2 = module;
 				console.log('module2 init');
 			});
-			ui.mediator.on('module1-onInit', function(module){
+			ui.mediator.on('app-Module1-onInit', function(module){
 				console.log('module1 init');
 			});
-			ui.mediator.on('module2-onValueChange', function(value){
+			ui.mediator.on('app-Module2-onValueChange', function(value){
 				that.dependedValue = value;
 			});
 
