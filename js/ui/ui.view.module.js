@@ -3,7 +3,9 @@
 	ui.view.module = my.Class({
 		constructor: function(options) {
 			var that = this;
+			this.declaration = {};
 			this.index = options.index || undefined;
+			this.type = options.type || undefined;
 			this.value = undefined;
 			this.dependedValue = undefined;
 			this.items = {};
@@ -17,8 +19,9 @@
 			if(items && items.length) {
 				this.declaration.items = items;
 			}
-			ui.mediator.trigger(this.index+'-onDeclaration', this.declaration);
+			ui.mediator.fire(this, 'onDeclaration', this.declaration);
 			this.declaration.index = this.index;
+			this.declaration.type = this.type;
 			return this.declaration;
 		},
 		getSubDeclaration: function() {
@@ -33,7 +36,8 @@
 			_.each(this.subModulesIndexes, function(moduleIndex){
 				that.items[moduleIndex] = new ui.modules[moduleIndex]({
 					parent: that,
-					index: that.index + '-' + moduleIndex
+					index: that.index + '-' + moduleIndex,
+					type: moduleIndex
 				});
 			});
 		},
@@ -41,13 +45,12 @@
 			_.each(this.items, function(module) {
 				module.init();
 			});
-			console.log('init', this.index, this);
-			ui.mediator.trigger(this.index+'-onInit', this);
+			ui.mediator.fire(this.index+'-onInit', this);
 			return this.declaration;
 		},
 		setValue: function(value) {
 			this.value = value;
-			ui.mediator.trigger(this.index+'-onValueChange', this.value);
+			ui.mediator.fire(this.index+'-onValueChange', this.value);
 		},
 		getValue: function() {
 			return this.value;

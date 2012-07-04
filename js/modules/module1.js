@@ -3,16 +3,10 @@
 		constructor: function(options) {
 			var that = this;
 			this.declaration = { html: 'none' };
+			this.subModulesIndexes = ['Sub2'];
 
 			ui.mediator.on('app-Module2-onInit', function(module){
 				that.module2 = module;
-				console.log('module2 init');
-			});
-			ui.mediator.on('app-Module1-onInit', function(module){
-				console.log('module1 init');
-			});
-			ui.mediator.on('app-Module2-onValueChange', function(value){
-				that.dependedValue = value;
 			});
 
 			ui.modules.Module1.Super.call(this, options);

@@ -3,7 +3,7 @@
 		constructor: function(options) {
 			var that = this;
 			this.declaration = { cls: 'subs' };
-			this.subModulesIndexes = ['Module2Sub1', 'Module2Sub2'];
+			this.subModulesIndexes = ['Sub1', 'Sub2'];
 
 			ui.mediator.on('app-Module1-onValueChange', function(value){
 				that.dependedValue = value;
